@@ -1,5 +1,5 @@
-import Home from './src/components/pages/home'
+import Home from "./src/components/pages/Home.js";
 
 export default function App() {
-  return <Home />
+  return <Home />;
 }

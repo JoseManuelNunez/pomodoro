@@ -1,6 +1,6 @@
 import { Text, View, SafeAreaView, Platform, StyleSheet } from "react-native";
 import Header from "../organisms/Header";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Timer from "../organisms/Timer";
 import StartorStopButtom from "../atoms/StartorStopButtom";
 
@@ -10,6 +10,22 @@ export default function Home() {
   const [time, setTime] = useState(25 * 60);
   const [currentTime, setCurrentTime] = useState("POMO" | "SHORT" | "LONG");
   const [isActive, setIsActive] = useState(false);
+
+  useEffect(() => {
+    let interval = null
+
+    if(isActive) {
+        interval = setInterval(() => {
+            setTime(time -1)
+        }, 1000)
+    }else {
+        clearInterval(interval)
+    }
+
+    return() => { 
+        clearInterval(interval)
+    }
+  }, [isActive, time])
 
   return (
     <SafeAreaView
