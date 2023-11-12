@@ -2,12 +2,14 @@ import { Text, View, SafeAreaView, Platform, StyleSheet } from "react-native";
 import Header from "../organisms/Header";
 import { useState } from "react";
 import Timer from "../organisms/Timer";
+import StartorStopButtom from "../atoms/StartorStopButtom";
 
 const colors = ["#F7DC6F", "#A2D9CE", "#D7BDE2"];
 
 export default function Home() {
   const [time, setTime] = useState(25 * 60);
   const [currentTime, setCurrentTime] = useState("POMO" | "SHORT" | "LONG");
+  const [isActive, setIsActive] = useState(false);
 
   return (
     <SafeAreaView
@@ -22,6 +24,7 @@ export default function Home() {
           setTime={setTime}
         />
         <Timer time={time} />
+        <StartorStopButtom isActive={isActive} setIsActive={setIsActive} />
       </View>
     </SafeAreaView>
   );
